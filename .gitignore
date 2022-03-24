@@ -1,3 +1,6 @@
+# OpenNRE isnt avail as a package yet so manual install https://github.com/thunlp/OpenNRE#install
+OpenNRE/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

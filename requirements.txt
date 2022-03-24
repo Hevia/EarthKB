@@ -1,2 +1,4 @@
 pypdf2
 jina
+owlready2
+spacy

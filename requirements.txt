@@ -2,3 +2,5 @@ pypdf2
 owlready2
 spacy
 wikipedia-api
+scispacy
+spacy-transformers

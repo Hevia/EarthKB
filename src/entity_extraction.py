@@ -1,29 +1,45 @@
 import pke
 from nltk.corpus import wordnet
+from scikg_types.DocumentTypes import TextFile
 
 from utils.FileHelpers import loadFile
 
 sample = loadFile("./data/wikipedia/Advection.txt")
 
-extractor = pke.unsupervised.TopicRank()
-extractor.load_document(input=sample, language='en')
-extractor.candidate_selection()
-extractor.candidate_weighting()
+def createKeyphraseIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
+    # TODO: Some defensive coding here
+    extractor = pke.unsupervised.TopicRank()
 
-# Get the N-best candidates (here, 5) as keyphrases
-keyphrases = extractor.get_n_best(n=5, stemming=False)
+    keyphraseIndex: dict[str, list[str]] = {}
+    for textFile in textFiles:
 
-# for each of the best candidates
-for i, (candidate, score) in enumerate(keyphrases):
-    
-    # print out the its rank, phrase and score
-    print("rank {}: {} ({})".format(i, candidate, score))
+        extractor.load_document(input=textFile["file_content"], language='en')
+        extractor.candidate_selection()
+        extractor.candidate_weighting()
 
-    # Grab similar keyphrases for insertion into the inverted index
-    synonyms = []
+        # Get the N-best candidates (here, 5) as keyphrases
+        keyphrases = extractor.get_n_best(n=5, stemming=False)
+
+        # Grab synonyms for each candidate
+        keyphrases_and_synonyms = set()
+        for(candidate, score) in keyphrases:
+            # Add the base keyphrase
+            keyphrases_and_synonyms.add(candidate)
+
+            # TODO: Possible restrict how many syns we pick from?
+            # Add related words
+            for syn in wordnet.synsets(candidate):
+                for l in syn.lemmas():
+                    keyphrases_and_synonyms.add(l.name())
+            
+
+        for key in keyphrases_and_synonyms:
+            # check if the key is already present
+            if key in keyphraseIndex:
+                keyphraseIndex[key].append(textFile["file_id"])
+            else:
+                keyphraseIndex[key] = [textFile["file_id"]]
+
+    # Save the file as a pickle
     
-    for syn in wordnet.synsets(candidate):
-        for l in syn.lemmas():
-            synonyms.append(l.name())
-    
-    print(f"Synonyms for {candidate}: {set(synonyms)}")
+    return keyphraseIndex

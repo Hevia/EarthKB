@@ -1,13 +1,13 @@
-import spacy
+from entity_extraction import createKeyphraseIndex
+from scikg_types.DocumentTypes import TextFile
 
-from utils.FileHelpers import loadFile
+from utils.FileHelpers import loadFile, loadTextFilesBulk
 from utils.PrintHelpers import show_ents
 
 
-nlp = spacy.load("en_core_web_sm")
+textFiles: list[TextFile] = loadTextFilesBulk("./data/wikipedia")
 
-doc = loadFile("./data/wikipedia/Advection.txt")
+keyphraseIndex: dict[str, list[str]] = createKeyphraseIndex(textFiles)
+print(keyphraseIndex)
 
-results = nlp(doc)
-
-show_ents(results)
+#topicIndex: dict[str, list[str]] = createTopicIndex(textFiles)

@@ -1,3 +1,22 @@
+import os
+from scikg_types.DocumentTypes import TextFile
+
+
+def loadTextFilesBulk(dir_path: str) -> list[TextFile]:
+    textFiles: list[TextFile] = []
+    try:
+        for _, _, file_names in os.walk(dir_path):
+            for file_name in file_names:
+                textFiles.append({
+                    "file_id": file_name,
+                    "file_content": loadFile(f"{dir_path}/{file_name}")
+                })
+    except Exception as e:
+        # TODO logging
+        print(e)
+
+    return textFiles
+
 def loadFile(file_path: str) -> str:
     """
     Loads the file at a specificed path, returns an error otherwise
@@ -7,11 +26,11 @@ def loadFile(file_path: str) -> str:
     """
     try:
         _file = ""
-        with open(file_path, "r") as fp:
+        with open(file_path, "r", encoding="utf-8") as fp:
             _file = fp.read()
         return _file
-    except Exception:
-        raise Exception(f"Error reading file at: {file_path}")
+    except Exception as e:
+        raise Exception(f"Error: {e} file at: {file_path}")
 
 def loadFileAsLines(file_path: str) -> list[str]:
     """
@@ -22,11 +41,11 @@ def loadFileAsLines(file_path: str) -> list[str]:
     """
     try:
         _file = ""
-        with open(file_path, "r") as fp:
+        with open(file_path, "r", encoding="utf-8") as fp:
             _file = fp.readlines()
         return _file
-    except Exception:
-        raise Exception(f"Error reading file at: {file_path}")
+    except Exception as e:
+        raise Exception(f"Error: {e} reading file at: {file_path}")
 
 def saveFile(data, save_path) -> None:
     try:

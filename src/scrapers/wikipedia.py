@@ -1,4 +1,4 @@
-from utils.FileHelpers import loadFileAsLines, saveFile
+from utils.FileHelpers import loadFileAsLines, saveTextFile
 import wikipediaapi
 import time
 
@@ -17,7 +17,7 @@ for article in wiki_articles:
 
     try:
         if (p_wiki.exists()):
-            saveFile(p_wiki.text, f"{output_dir}/{article.rstrip()}.txt")
+            saveTextFile(p_wiki.text, f"{output_dir}/{article.rstrip()}.txt")
         else:
             print(f"The article for {article.rstrip()} was not found")
     except Exception:

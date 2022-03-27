@@ -1,7 +1,6 @@
+numpy
+pandas
 pypdf2
-owlready2
-spacy
+spacy==3.0.0
 wikipedia-api
-scispacy
-spacy-transformers
 bertopic

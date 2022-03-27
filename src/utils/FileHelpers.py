@@ -1,4 +1,5 @@
 import os
+import pickle
 from scikg_types.DocumentTypes import TextFile
 
 
@@ -47,9 +48,24 @@ def loadFileAsLines(file_path: str) -> list[str]:
     except Exception as e:
         raise Exception(f"Error: {e} reading file at: {file_path}")
 
-def saveFile(data, save_path) -> None:
+def saveTextFile(data, save_path) -> None:
     try:
         with open(save_path, "w+", encoding="utf-8") as fp:
             fp.write(data)
     except Exception:
         raise Exception(f"Error with trying to save file at: {save_path}")
+
+def savePickle(data, save_path) -> None:
+    try:
+        with open(save_path, 'wb') as f:
+            pickle.dump(data, f)
+    except Exception as e:
+        raise Exception(f"Error: {e} with trying to save pickle at: {save_path}")
+
+
+def loadPickle(load_path) -> None:
+    try:
+        with open(load_path) as f:
+            return pickle.load(f)
+    except Exception as e:
+        raise Exception(f"Error: {e} with trying to save pickle at: {load_path}")

@@ -68,6 +68,6 @@ def createKeyphraseIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
                 keyphraseIndex[key] = [textFile["file_id"]]
 
     # Save the file as a pickle
-    savePickle("./models/indexes/keyPhraseIndex.pickle")
+    savePickle(keyphraseIndex, "./models/indexes/keyPhraseIndex.pickle")
     
     return keyphraseIndex

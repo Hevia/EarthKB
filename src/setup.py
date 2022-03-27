@@ -9,11 +9,11 @@ import time
 
 #starting time
 start = time.time()
-textFiles: list[TextFile] = loadTextFilesBulk("./data/wikipedia")
+# textFiles: list[TextFile] = loadTextFilesBulk("./data/wikipedia")
 
-keyphraseIndex: dict[str, list[str]] = createKeyphraseIndex(textFiles)
+# keyphraseIndex: dict[str, list[str]] = createKeyphraseIndex(textFiles)
 
-topicIndex: dict[str, list[str]] = createTopicIndex(textFiles)
+# topicIndex: dict[str, list[str]] = createTopicIndex(textFiles)
 
 text = "Fungi, a major element of atmospheric bioaerosols, are capable of existing and surviving in the air for extended periods of time."
 inferIndex(text)

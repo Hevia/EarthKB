@@ -65,7 +65,7 @@ def savePickle(data, save_path) -> None:
 
 def loadPickle(load_path) -> None:
     try:
-        with open(load_path) as f:
+        with open(load_path, "rb") as f:
             return pickle.load(f)
     except Exception as e:
-        raise Exception(f"Error: {e} with trying to save pickle at: {load_path}")
+        raise Exception(f"Error: {e} with trying to load pickle at: {load_path}")

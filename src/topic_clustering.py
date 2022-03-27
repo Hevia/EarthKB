@@ -21,7 +21,7 @@ def createTopicIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
         else:
             topicIndex[topic] = [textFile["file_id"]]
 
-    savePickle("./models/indexes/topicIndex.pickle")
+    savePickle(topicIndex, "./models/indexes/topicIndex.pickle")
     topic_model.save("./models/topic-model")
 
     return topicIndex

@@ -4,3 +4,5 @@ pypdf2
 spacy==3.0.0
 wikipedia-api
 bertopic
+flake8
+black

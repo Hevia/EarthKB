@@ -1,5 +1,6 @@
 # 
 src/data/wikipedia/*.txt
+src/data/arXiv/*.json
 
 # OpenNRE isnt avail as a package yet so manual install https://github.com/thunlp/OpenNRE#install
 OpenNRE/

@@ -20,7 +20,6 @@ Windows:
 python -m venv wvenv # Create a virtual environment
 . .\wvenv\Scripts\activate # Activate it
 pip install -r requirements.txt # Install requirements
-pip install git+https://github.com/boudinfl/pke.git # PKE is only on github for some reason??
 ```
 
 Linux:

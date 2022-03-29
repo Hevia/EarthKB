@@ -7,7 +7,9 @@ def createTopicIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
     topic_model = BERTopic()
 
     docs = []
-    # TODO: See if removing stopwords improves cluster performance, or maybe just need more articles?
+    # TODO:
+    # See if removing stopwords improves cluster performance,
+    # or maybe just need more articles?
     # https://www.geeksforgeeks.org/removing-stop-words-nltk-python/
     for textFile in textFiles:
         docs.append(textFile["file_content"])
@@ -42,13 +44,13 @@ def inferTopic(text: str):
             print(f"Results found for topic: {topic}")
             results_dict[topic] = topicIndex[topic]
         elif topic in topicIndex and topic in results_dict:
-            print(f"Found duplicate topic, adding additional results for: {topic}")
+            print(f"Found duplicate additional results for: {topic}")
             results_dict[topic].extend(topicIndex[topic])
 
     return results_dict
 
 
-def loadAndPrint():
+def loadAndPrint() -> None:
     topic_model = BERTopic.load("./models/topic-model")
 
     freq = topic_model.get_topic_info()

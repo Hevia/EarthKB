@@ -1,5 +1,5 @@
 # 
-src/data/wikipedia/*.txt
+scikg/src/data/wikipedia/*.txt
 
 # OpenNRE isnt avail as a package yet so manual install https://github.com/thunlp/OpenNRE#install
 OpenNRE/

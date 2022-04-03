@@ -2,14 +2,16 @@ import pke
 from nltk.corpus import wordnet
 from scikg_types.DocumentTypes import TextFile
 
-from utils.FileHelpers import loadFile, loadPickle, savePickle
+from utils.FileHelpers import loadPickle, savePickle
 
 
 def inferIndex(text):
     extractor = pke.unsupervised.TopicRank()
-    keyPhraseIndex = loadPickle("./models/indexes/keyPhraseIndex.pickle")
+    keyPhraseIndex: dict[str, list[str]] = loadPickle(
+        "./models/indexes/keyPhraseIndex.pickle"
+    )
 
-    extractor.load_document(input=text, language='en')
+    extractor.load_document(input=text, language="en")
     extractor.candidate_selection()
     extractor.candidate_weighting()
 
@@ -18,7 +20,7 @@ def inferIndex(text):
 
     # Grab synonyms for each candidate
     keyphrases_and_synonyms = set()
-    for(candidate, score) in keyphrases:
+    for (candidate, score) in keyphrases:
         # Add the base keyphrase
         keyphrases_and_synonyms.add(candidate)
 
@@ -28,9 +30,16 @@ def inferIndex(text):
             for l in syn.lemmas():
                 keyphrases_and_synonyms.add(l.name())
 
+    results_dict: dict[str, list[str]] = {}
     for key in keyphrases_and_synonyms:
-        if key in keyPhraseIndex:
-            print(f"Results found for key: {key}, files: {keyPhraseIndex[key]}")
+        if key in keyPhraseIndex and key not in results_dict:
+            print(f"Results found for key: {key}")
+            results_dict[key] = keyPhraseIndex[key]
+        elif key in keyPhraseIndex and key in results_dict:
+            print(f"Found duplicate key, adding additional results for: {key}")
+            results_dict[key].extend(keyPhraseIndex[key])
+
+    return results_dict
 
 
 def createKeyphraseIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
@@ -40,7 +49,7 @@ def createKeyphraseIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
     keyphraseIndex: dict[str, list[str]] = {}
     for textFile in textFiles:
 
-        extractor.load_document(input=textFile["file_content"], language='en')
+        extractor.load_document(input=textFile["file_content"], language="en")
         extractor.candidate_selection()
         extractor.candidate_weighting()
 
@@ -49,7 +58,7 @@ def createKeyphraseIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
 
         # Grab synonyms for each candidate
         keyphrases_and_synonyms = set()
-        for(candidate, score) in keyphrases:
+        for (candidate, score) in keyphrases:
             # Add the base keyphrase
             keyphrases_and_synonyms.add(candidate)
 
@@ -58,7 +67,6 @@ def createKeyphraseIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
             for syn in wordnet.synsets(candidate):
                 for l in syn.lemmas():
                     keyphrases_and_synonyms.add(l.name())
-            
 
         for key in keyphrases_and_synonyms:
             # check if the key is already present
@@ -69,5 +77,4 @@ def createKeyphraseIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
 
     # Save the file as a pickle
     savePickle(keyphraseIndex, "./models/indexes/keyPhraseIndex.pickle")
-    
     return keyphraseIndex

@@ -1,6 +1,11 @@
 numpy
 pandas
 pypdf2
-spacy==3.0.0
+spacy
 wikipedia-api
 bertopic
+flake8
+black
+mypy
+pre-commit
+git+https://github.com/boudinfl/pke.git

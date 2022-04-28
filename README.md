@@ -1,16 +1,13 @@
 # EarthKG
-A pipeline for turning Earth &amp; Life science documents(images, videos, academic papers, news articles) into a full stack neural searchable knowledge base
+A pipeline for turning Earth &amp; Life science documents(images, videos, academic papers, news articles) into a searchable knowledge base
 
+
+Very much unfinished, I wrote the README before writing most of the code :---) whoops!
 ## Features
-A complete roadmap can be found [here.]()
-
-EarthKG offers
-- Data scrapers for wikipedia
 
 
 ## Setup
 
-You can self-host EarthKG &amp; create a knowledge graph from your own collection of documents. If you want to see EarthKG in action, check out the demo site which is trained on knowledge graph papers: [link](). (Very meta!)
 
 ### Installing dependencies 
 EarthKG is currently not a python package, until then here are the instructions for getting it running on your system.

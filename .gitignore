@@ -1,9 +1,18 @@
+# 
+scikg/src/data/wikipedia/*.txt
+
+# OpenNRE isnt avail as a package yet so manual install https://github.com/thunlp/OpenNRE#install
+OpenNRE/
+
+# I create a wvenv to differeiniate beteen windows and non-windows virutal environments
+wvenv/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
+# C extensionscd 
 *.so
 
 # Distribution / packaging

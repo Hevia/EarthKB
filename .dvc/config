@@ -1,0 +1,4 @@
+[core]
+    remote = azure
+['remote "remote_storage"']
+    url = /home/josecelano/Documents/dvc_remote

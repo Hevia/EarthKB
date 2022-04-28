@@ -13,6 +13,8 @@ Very much unfinished, I wrote the README before writing most of the code :---) w
 EarthKG is currently not a python package, until then here are the instructions for getting it running on your system.
 
 Windows:
+Read this guide on how to install poppler for windows: https://stackoverflow.com/questions/18381713/how-to-install-poppler-on-windows (required for mmda)
+
 ```powershell
 python -m venv wvenv # Create a virtual environment
 . .\wvenv\Scripts\activate # Activate it

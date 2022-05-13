@@ -1,9 +1,8 @@
 # EarthKG
-A pipeline for turning Earth &amp; Life science documents(images, videos, academic papers, news articles) into a searchable knowledge base
+A pipeline for turning Earth &amp; Life science documents into a searchable knowledge base to aid researchers on their own personal set of documents.
 
+## Planned Features
 
-Very much unfinished, I wrote the README before writing most of the code :---) whoops!
-## Features
 
 
 ## Setup

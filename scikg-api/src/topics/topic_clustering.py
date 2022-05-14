@@ -1,9 +1,10 @@
+from typing import Union
 from bertopic import BERTopic
-from scikg_types.DocumentTypes import TextFile
+from scikg_types.DocumentTypes import TextFile, ScientificArticle
 from utils.FileHelpers import loadPickle, savePickle
 
 
-def createTopicIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
+def createTopicEmbedding(textFiles: list[Union[TextFile, ScientificArticle]]) -> dict[str, list[str]]:
     topic_model = BERTopic()
 
     docs = []
@@ -24,10 +25,9 @@ def createTopicIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
         else:
             topicIndex[topic] = [textFile["file_id"]]
 
+    # TODO: Learn how to just use the embedding so we can ditch this index
     savePickle(topicIndex, "./models/indexes/topicIndex.pickle")
     topic_model.save("./models/topic-model")
-
-    return topicIndex
 
 
 # TODO: Make this not a cold start

@@ -1,25 +1,39 @@
-from ner import createKeyphraseIndex, inferIndex
-from infer.index_ranking import rank_index_results
-from scikg_types.DocumentTypes import TextFile
-from topic_clustering import createTopicIndex, inferTopic
+from typing import Union
+from ner.entity_extraction import createKeyphraseIndex
+from scikg_types.DocumentTypes import TextFile, ScientificArticle
+from topics.topic_clustering import createTopicEmbedding
+from knowledge_graph.graph_creation import createKnowledgeGraph
+from semantic_search.vector_creation import createDenseVectors
 
-from utils.FileHelpers import loadFile, loadTextFilesBulk
-from utils.PrintHelpers import show_ents
+from utils.FileHelpers import loadTextFilesBulk
+import multiprocessing
 
 import time
 
 # This script is for setting up SciKG for first time runs on your own data.
+# What this script does: Processes & cleans the data, creates indexes, graphs, & embeddings for searching.
+# What this script DOESN'T do: Fetch data, start/serve the API
+
+def process_text_data(textFiles: list[Union[TextFile, ScientificArticle]]) -> list[Union[TextFile, ScientificArticle]]:
+    """ """
+    return textFiles
 
 # 1. Load & preprocess data
+# Preprocessing steps: coref resolution, remove unusual characters
 textFiles: list[TextFile] = loadTextFilesBulk("./data/wikipedia")
 
-# 2. Index creation 
+# 2. Index, Knowledge Graph, & Dense Vectors creation 
 # We use an inverted index with keyphrases as keys to support a very basic standard search functionality
-keyphraseIndex: dict[str, list[str]] = createKeyphraseIndex(textFiles)
+target_processes = [createKeyphraseIndex, createTopicEmbedding, createKnowledgeGraph, createDenseVectors]
+created_processes = []
 
-# We create topic embeddings for our 
-topicIndex: dict[str, list[str]] = createTopicIndex(textFiles)
+for process in target_processes:
+    created_processes.append(multiprocessing.Process(target=process, args=(textFiles,)))
 
-# 3. Knowledge Graph Creation
+for process in created_processes:
+    process.start()
+
+for process in created_processes:
+    process.join()
 
 # 4. Cleanup

@@ -1,7 +1,15 @@
 # EarthKG
 A pipeline for turning Earth &amp; Life science documents into a searchable knowledge base to aid researchers on their own personal set of documents.
 
+## Features
+- Searching documents by keywords
+
 ## Planned Features
+- Easy CLI setup to spin up your own system.
+- Knowledge graph driven hypothesis generation. 
+- QA against your corpus.
+- Reccomendations powered by topic embeddings.
+- 
 
 
 

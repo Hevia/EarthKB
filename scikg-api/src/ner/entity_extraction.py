@@ -1,6 +1,7 @@
+from typing import Union
 import pke
 from nltk.corpus import wordnet
-from scikg_types.DocumentTypes import TextFile
+from scikg_types.DocumentTypes import TextFile, ScientificArticle
 
 from utils.FileHelpers import loadPickle, savePickle
 
@@ -42,7 +43,7 @@ def inferIndex(text):
     return results_dict
 
 
-def createKeyphraseIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
+def createKeyphraseIndex(textFiles: list[Union[TextFile, ScientificArticle]]) -> None:
     # TODO: Some defensive coding here
     extractor = pke.unsupervised.TopicRank()
 
@@ -77,4 +78,3 @@ def createKeyphraseIndex(textFiles: list[TextFile]) -> dict[str, list[str]]:
 
     # Save the file as a pickle
     savePickle(keyphraseIndex, "./models/indexes/keyPhraseIndex.pickle")
-    return keyphraseIndex

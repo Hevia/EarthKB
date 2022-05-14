@@ -1,18 +1,26 @@
 # EarthKG
-A pipeline for turning Earth &amp; Life science documents(images, videos, academic papers, news articles) into a searchable knowledge base
+A pipeline for turning Earth &amp; Life science documents into a searchable knowledge base to aid researchers on their own personal set of documents.
 
-
-Very much unfinished, I wrote the README before writing most of the code :---) whoops!
 ## Features
+- Searching documents by keywords
 
+## Planned Features
+- Easy CLI setup to spin up your own system.
+- Vector search for your corpus
+- Knowledge graph driven hypothesis generation. 
+- QA against your corpus.
+- Reccomendations powered by topic embeddings.
+- Dockerfiles for reproducability & easy deployment
 
 ## Setup
 
 
 ### Installing dependencies 
-EarthKG is currently not a python package, until then here are the instructions for getting it running on your system.
+You should use the provided Dockerfiles for development, but in the case you rather install locally. You can 
 
 Windows:
+Read this guide on how to install poppler for windows: https://stackoverflow.com/questions/18381713/how-to-install-poppler-on-windows (required for mmda)
+
 ```powershell
 python -m venv wvenv # Create a virtual environment
 . .\wvenv\Scripts\activate # Activate it

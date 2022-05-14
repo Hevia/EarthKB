@@ -1,6 +1,5 @@
 numpy
 pandas
-pypdf2
 spacy
 wikipedia-api
 bertopic
@@ -10,3 +9,4 @@ mypy
 pre-commit
 fastapi
 git+https://github.com/boudinfl/pke.git
+mmda

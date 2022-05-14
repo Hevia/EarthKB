@@ -13,7 +13,6 @@ import time
 # This script is for setting up SciKG for first time runs on your own data.
 # What this script does: Processes & cleans the data, creates indexes, graphs, & embeddings for searching.
 # What this script DOESN'T do: Fetch data, start/serve the API
-
 def process_text_data(textFiles: list[Union[TextFile, ScientificArticle]]) -> list[Union[TextFile, ScientificArticle]]:
     """ """
     return textFiles

@@ -1,5 +1,5 @@
 # EarthKG
-A pipeline for turning Earth &amp; Life science documents into a searchable knowledge base to aid researchers on their own personal set of documents.
+A pipeline for turning Earth &amp; Life science documents into a searchable knowledge base to aid researchers generate new hypotheses.
 
 ## Features
 - Searching documents by keywords

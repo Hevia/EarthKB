@@ -2,13 +2,9 @@ from typing import Union
 from ner.entity_extraction import createKeyphraseIndex
 from scikg_types.DocumentTypes import TextFile, ScientificArticle
 from topics.topic_clustering import createTopicEmbedding
-from knowledge_graph.graph_creation import createKnowledgeGraph
-from semantic_search.vector_creation import createDenseVectors
 
 from utils.FileHelpers import loadTextFilesBulk
 import multiprocessing
-
-import time
 
 # This script is for setting up SciKG for first time runs on your own data.
 # What this script does: Processes & cleans the data, creates indexes, graphs, & embeddings for searching.
@@ -23,7 +19,7 @@ textFiles: list[TextFile] = loadTextFilesBulk("./data/wikipedia")
 
 # 2. Index, Knowledge Graph, & Dense Vectors creation 
 # We use an inverted index with keyphrases as keys to support a very basic standard search functionality
-target_processes = [createKeyphraseIndex, createTopicEmbedding, createKnowledgeGraph, createDenseVectors]
+target_processes = [createKeyphraseIndex, createTopicEmbedding]
 created_processes = []
 
 for process in target_processes:

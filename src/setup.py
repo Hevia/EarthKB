@@ -1,7 +1,7 @@
 from typing import Union
-from ner.entity_extraction import createKeyphraseIndex
-from scikg_types.DocumentTypes import TextFile, ScientificArticle
-from topics.topic_clustering import createTopicEmbedding
+from entity_extraction import createKeyphraseIndex
+from types import TextFile, ScientificArticle
+from topic_clustering import createTopicEmbedding
 
 from utils.FileHelpers import loadTextFilesBulk
 import multiprocessing

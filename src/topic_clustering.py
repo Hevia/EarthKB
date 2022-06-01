@@ -1,6 +1,6 @@
 from typing import Union
 from bertopic import BERTopic
-from scikg_types.DocumentTypes import TextFile, ScientificArticle
+from types import TextFile, ScientificArticle
 from utils.FileHelpers import loadPickle, savePickle
 
 

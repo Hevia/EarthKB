@@ -1,7 +1,7 @@
 from typing import Union
 import pke
 from nltk.corpus import wordnet
-from scikg_types.DocumentTypes import TextFile, ScientificArticle
+from types import TextFile, ScientificArticle
 
 from utils.FileHelpers import loadPickle, savePickle
 

@@ -1,6 +1,6 @@
 import os
 import pickle
-from scikg_types.DocumentTypes import TextFile
+from types import TextFile
 
 
 def loadTextFilesBulk(dir_path: str) -> list[TextFile]:

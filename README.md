@@ -6,9 +6,7 @@ A pipeline for turning Earth &amp; Life science documents into a searchable know
 
 ## Planned Features
 - Easy CLI setup to spin up your own system.
-- Vector search for your corpus
 - Knowledge graph driven hypothesis generation. 
-- QA against your corpus.
 - Reccomendations powered by topic embeddings.
 - Dockerfiles for reproducability & easy deployment
 
